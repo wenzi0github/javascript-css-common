@@ -8,6 +8,7 @@ javascript和css的常用代码总结。在平时工作和学习中，我们会�
   2. [去除浮动clearfix](#clearfix)
   3. [js操作cookie](#js-cookie)
   4. [css强制换行/自动换行/强制不换行](#word-wrap)
+  5. [table边界的样式](#table-border)
   
 ####<a id="reset" name="reset">1. CSS初始化样式reset.css</a>  
 不同的浏览器对各个标签默认的样式是不一样的，而且有时候我们也不想使用浏览器给出的默认样式，我们就可以用reset.css去掉其默认样式
@@ -97,3 +98,10 @@ div{
   word-break:break-all;
 }
 ```
+
+####<a id="table-border" name="table-border">5. table边界的样式</a>
+```css
+table { border :  1px  solid  #B1CDE3 ; padding : 0 ; border-collapse :  collapse ; table-layout : fixed ;  margin-top : 10px ;}  
+table td { height : 30px ; border :  1px  solid  #B1CDE3 ;  background :  #fff ;   font-size : 15px ;  font-family :Microsoft YaHei;  padding :  3px  3px  3px  8px ; color :  #4f6b72 ;  width : 160px ;}
+```
+
