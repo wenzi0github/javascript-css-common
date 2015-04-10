@@ -4,7 +4,7 @@
   1. [CSS初始化样式reset.css](#reset)
   2. 
   
-###<a id="reset" name="reset">CSS初始化样式reset.css</a>  
+####<a id="reset" name="reset">1. CSS初始化样式reset.css</a>  
 ```css
 body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin:0; padding:0; }
 body, button, input, select, textarea { font:12px/1.5tahoma, arial, \5b8b\4f53; }
