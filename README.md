@@ -6,6 +6,7 @@ javascript和css的常用代码总结。在平时工作和学习中，我们会�
   1. [CSS初始化样式reset.css](#reset)
   2. [去除浮动clearfix](#clearfix)
   3. [js操作cookie](#js-cookie)
+  4. [css强制换行/自动换行/强制不换行](#word-wrap)
   
 ####<a id="reset" name="reset">1. CSS初始化样式reset.css</a>  
 不同的浏览器对各个标签默认的样式是不一样的，而且有时候我们也不想使用浏览器给出的默认样式，我们就可以用reset.css去掉其默认样式
@@ -74,5 +75,24 @@ var  cookie = {
          var  cval= cookie.getCookie(name);
          if (cval!= null ) document.cookie= name +  "=" +cval+ ";expires=" +exp.toGMTString();
      }
+}
+```
+
+####<a id="word-wrap" name="word-wrap">4. css强制换行/自动换行/强制不换行</a>
+```css
+/* 强制不换行 */
+div{
+  white-space:nowrap;
+}
+
+/* 自动换行 */
+div{ 
+  word-wrap: break-word; 
+  word-break: normal; 
+}
+
+/* 强制英文单词断行 */
+div{
+  word-break:break-all;
 }
 ```
