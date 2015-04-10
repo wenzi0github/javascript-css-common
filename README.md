@@ -45,7 +45,7 @@ table { border-collapse:collapse; border-spacing:0; }
 .clearfix{zoom:1}
 ```
 
-####<a id="js-cookie" name="js-cookie">2. js操作cookie</a>
+####<a id="js-cookie" name="js-cookie">3. js操作cookie</a>
 
 ```javascript
 var  cookie = {
