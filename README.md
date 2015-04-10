@@ -5,6 +5,7 @@ javascript和css的常用代码总结。在平时工作和学习中，我们会�
 ##目录
   1. [CSS初始化样式reset.css](#reset)
   2. [去除浮动clearfix](#clearfix)
+  3. [js操作cookie](#js-cookie)
   
 ####<a id="reset" name="reset">1. CSS初始化样式reset.css</a>  
 不同的浏览器对各个标签默认的样式是不一样的，而且有时候我们也不想使用浏览器给出的默认样式，我们就可以用reset.css去掉其默认样式
@@ -44,3 +45,34 @@ table { border-collapse:collapse; border-spacing:0; }
 .clearfix{zoom:1}
 ```
 
+####<a id="js-cookie" name="js-cookie">2. js操作cookie</a>
+
+```javascript
+var  cookie = {
+     //写cookies
+     setCookie: function (name, value){
+         var  Days = 365;
+         var  exp =  new  Date();
+         exp.setTime(exp.getTime() + Days*24*60*60*1000);
+         document.cookie = name +  "=" + escape (value) +  ";expires="  + exp.toGMTString();
+     },
+     
+     //读取cookies
+     getCookie: function (name){
+         var  arr,reg= new  RegExp( "(^| )" +name+ "=([^;]*)(;|$)" );
+         if (arr=document.cookie.match(reg)) 
+             return  unescape(arr[2]);
+         else 
+             return  null ;
+     },
+     
+     //删除cookies
+     delCookie: function (name)
+     {
+         var  exp =  new  Date();
+         exp.setTime(exp.getTime() - 1);
+         var  cval= cookie.getCookie(name);
+         if (cval!= null ) document.cookie= name +  "=" +cval+ ";expires=" +exp.toGMTString();
+     }
+}
+```
