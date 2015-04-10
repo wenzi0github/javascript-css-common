@@ -9,6 +9,8 @@ javascript和css的常用代码总结。在平时工作和学习中，我们会�
   3. [js操作cookie](#js-cookie)
   4. [css强制换行/自动换行/强制不换行](#word-wrap)
   5. [table边界的样式](#table-border)
+  6. [div上下左右居中](#div-center)
+  7. [图片上下左右居中](#img-center)
   
 ####<a id="reset" name="reset">1. CSS初始化样式reset.css</a>  
 不同的浏览器对各个标签默认的样式是不一样的，而且有时候我们也不想使用浏览器给出的默认样式，我们就可以用reset.css去掉其默认样式
@@ -105,3 +107,35 @@ table { border :  1px  solid  #B1CDE3 ; padding : 0 ; border-collapse :  collaps
 table td { height : 30px ; border :  1px  solid  #B1CDE3 ;  background :  #fff ;   font-size : 15px ;  font-family :Microsoft YaHei;  padding :  3px  3px  3px  8px ; color :  #4f6b72 ;  width : 160px ;}
 ```
 
+####<a id="div-center" name="div-center">6. div上下左右居中</a>  
+```css
+div{
+  position:absolute;
+  width:400px;
+  height:300px;
+  left:50%;
+  top:50%;
+  margin-left:-200px;
+  margin-top:-150px;
+}
+```
+
+####<a id="img-center" name="img-center">7. 图片上下左右居中</a>  
+一种常用的方式是把外层的div设置为table-cell；然后让内部的元素上下左右居中。当然也还有一种方式，就是把img当做div，参考6中的代码进行设置。  
+CSS代码如下：  
+```css
+.content{
+  width: 400px;
+  height: 400px;
+  border: 1px solid #ccc;
+  text-align: center;
+  display:table-cell;
+  vertical-align:middle;
+}
+```
+html代码如下：  
+```html  
+<div class="content">
+  <img src="./4.jpg" alt="img">
+</div>
+```
