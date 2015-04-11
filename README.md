@@ -145,5 +145,6 @@ html代码如下：
 js中没有直接对字符串进行反转的，需要我们先转换成数组，然后使用数组中的`reverse()`方法翻转，最后在把数组拼接回字符串。  
 ```javascript
 var str = "abcdefg";
-str.split("").reverse().join("")
+var revs = str.split("").reverse().join("");
+console.log(revs);
 ```
