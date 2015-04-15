@@ -12,6 +12,7 @@ javascript和css的常用代码总结。在平时工作和学习中，我们会�
   6. [div上下左右居中](#div-center)
   7. [图片上下左右居中](#img-center)
   8. [js字符串翻转](#js-str-reverse)
+  9. [iPad页面适配](#ipad_adap)
   
 ####<a id="reset" name="reset">1. CSS初始化样式reset.css</a>  
 不同的浏览器对各个标签默认的样式是不一样的，而且有时候我们也不想使用浏览器给出的默认样式，我们就可以用reset.css去掉其默认样式
@@ -147,4 +148,27 @@ js中没有直接对字符串进行反转的，需要我们先转换成数组，
 var str = "abcdefg";
 var revs = str.split("").reverse().join("");
 console.log(revs);
+```
+
+####<a id="ipad_adap" name="ipad_adap">9. iPad页面适配</a>  
+这是一个适配iPad页面的大致框架，包括竖屏和横屏
+```css
+iPad 适配
+/* ipad 竖屏 */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) { 
+    body{ color:#000; }
+    /* … */
+}
+
+/* ipad 横屏 */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+    body{ color:#000; }
+    /* … */
+}
 ```
