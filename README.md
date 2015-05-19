@@ -14,6 +14,7 @@ javascript和css的常用代码总结。在平时工作和学习中，我们会�
   8. [js字符串翻转](#js-str-reverse)
   9. [iPad页面适配框架](#ipad_adap)
   10. [google html5.js](#google_html5_js)
+  11. [js产生6位随机数字](#js_random_six_num)
   
 ####<a id="reset" name="reset">1. CSS初始化样式reset.css</a>  
 不同的浏览器对各个标签默认的样式是不一样的，而且有时候我们也不想使用浏览器给出的默认样式，我们就可以用reset.css去掉其默认样式
@@ -188,3 +189,10 @@ c=d.insertBefore(c.lastChild,d.firstChild);b.hasCSS=!!c}g||t(a,b);return a}var k
 if(g)return a.createDocumentFragment();for(var b=b||i(a),c=b.frag.cloneNode(),d=0,e=m(),h=e.length;d<h;d++)c.createElement(e[d]);return c}};l.html5=e;q(f)})(this,document);
 ```
 
+####<a id="js_random_six_num" name="js_random_six_num">11. js产生6位随机数字</a>  
+这是利用js里的`Math.random()`产生的。若使用 *1000000 然后再强制转成整型也行；不过使用下面的方式可以更加简洁一些，直接截取随机数的最后6位进行返回： 
+```javascript
+function getRanNum(){
+    return (''+Math.random()).slice(-6); // Math.random().toString().slice(-6)
+}
+```
