@@ -15,6 +15,7 @@ javascript和css的常用代码总结。在平时工作和学习中，我们会�
   9. [iPad页面适配框架](#ipad_adap)
   10. [google html5.js](#google_html5_js)
   11. [js产生6位随机数字](#js_random_six_num)
+  12. [table中的td对齐属性](#table-td-align)
   
 ####<a id="reset" name="reset">1. CSS初始化样式reset.css</a>  
 不同的浏览器对各个标签默认的样式是不一样的，而且有时候我们也不想使用浏览器给出的默认样式，我们就可以用reset.css去掉其默认样式
@@ -197,3 +198,22 @@ function getRanNum(){
 }
 ```
 其实，产生32位的字母和数字混合的字符串也比较简单，先给出一个含有包含所有字符和数字的混合字符串，然后使用`Math.random()`摘取每位上的字符进行拼接，最后能够得到一个32位的随机字符串；或者使用js的md5()进行加密也可以。可以参考本人收藏的md5加密代码【[md5加密](https://github.com/wenzi0github/js-encrypt/blob/master/md5.js)】
+
+####<a id="table-td-align" name="table-td-align">12. table中td的对齐属性</a>  
+在table中有两个默认的属性：align(横向对齐属性)和valign(竖向对齐属性)。  
+align有三个值：left(左对齐，默认)，center(左右居中)，right(右对齐)；如想要文字居中，可以：  
+```html
+<td align='center'>wenzi</td>
+```
+valign也三个值：top(上对齐)，middle(上下居中，默认)，bottom(下对齐)；如想要文字上居中，可以：  
+```html
+<td valign='top'>wenzi</td>
+```
+
+当然，为了实现结构与样式的分离，**推荐**使用CSS的属性。  
+```css
+td{
+  align: center; /* 横向对齐：left, center, right */
+  vertical-align: top; /* 竖向对齐：top, middle, bottom */
+}
+```
