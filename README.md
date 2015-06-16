@@ -235,14 +235,15 @@ var val = $('#myradio input[type=radio]:checked').val();
 
 input[type=checkbox]的操作  
 ```javascript
-console.log( $('#mycheckbox input[type=checkbox]').is(':checked') );
+// 判断复选框是否选中
+var bool = $('#mycheckbox input[type=checkbox]').is(':checked') ;
 
-// 全选
+// 全选，所有的checkbox都添加上checked属性
 $('#checkall').click(function(){
     $('#like input[type=checkbox]').prop('checked', true);
 })
 
-// 反选
+// 反选，判断当前的checkbox是否被选中，若被选中则取消，否则添加checked属性
 $('#reverse').click(function(){
     $('#like input[type=checkbox]').each(function(){
         if($(this).is(':checked')){
@@ -253,7 +254,7 @@ $('#reverse').click(function(){
     })
 })
 
-// 取消选中
+// 取消选中，去掉所有checkbox的checked属性
 $('#deleteall').click(function(){
     $('#like input[type=checkbox]').prop('checked', false);
 })
@@ -266,8 +267,11 @@ $('#getcheckval').click(function(){
     })
     console.log(result);
 })
+```
 
-// select
+select标签
+```javascript
+// 获取select选中的value值
 $('#getselectval').click(function(){
     $('#result').text($('#province').val());
 })
