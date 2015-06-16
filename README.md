@@ -16,6 +16,7 @@ javascript和css的常用代码总结。在平时工作和学习中，我们会�
   10. [google html5.js](#google_html5_js)
   11. [js产生6位随机数字](#js_random_six_num)
   12. [table中的td对齐属性](#table-td-align)
+  13. [radion-checkbox-select](#radion-checkbox-select)
   
 ####<a id="reset" name="reset">1. CSS初始化样式reset.css</a>  
 不同的浏览器对各个标签默认的样式是不一样的，而且有时候我们也不想使用浏览器给出的默认样式，我们就可以用reset.css去掉其默认样式
@@ -216,4 +217,58 @@ td{
   align: center; /* 横向对齐：left, center, right */
   vertical-align: top; /* 竖向对齐：top, middle, bottom */
 }
+```
+####<a id="radion-checkbox-select" name="radion-checkbox-select">13. radion-checkbox-select</a>  
+jquery对radio, checkbox的input标签和select标签的操作  
+
+input[type=radio]的操作  
+```javascript
+// boolean, 判断radio是否有被选中的元素
+$('#myradio input[type=radio]').is(':checked');
+
+// 设置radio选中某个元素
+$('#myradio input:eq(1)').prop('checked', true);
+
+// 获取选中的radio的值
+var val = $('#myradio input[type=radio]:checked').val();
+```
+
+input[type=checkbox]的操作  
+```javascript
+console.log( $('#mycheckbox input[type=checkbox]').is(':checked') );
+
+// 全选
+$('#checkall').click(function(){
+    $('#like input[type=checkbox]').prop('checked', true);
+})
+
+// 反选
+$('#reverse').click(function(){
+    $('#like input[type=checkbox]').each(function(){
+        if($(this).is(':checked')){
+            $(this).prop('checked', false);
+        }else{
+            $(this).prop('checked', true);
+        }
+    })
+})
+
+// 取消选中
+$('#deleteall').click(function(){
+    $('#like input[type=checkbox]').prop('checked', false);
+})
+
+// 获取选中的值
+$('#getcheckval').click(function(){
+    var result = [];
+    $('#mycheckbox input[type=checkbox]:checked').each(function(){
+        result.push( $(this).val() );
+    })
+    console.log(result);
+})
+
+// select
+$('#getselectval').click(function(){
+    $('#result').text($('#province').val());
+})
 ```
