@@ -16,7 +16,7 @@ javascript和css的常用代码总结。在平时工作和学习中，我们会�
   10. [google html5.js](#google_html5_js)
   11. [js产生6位随机数字](#js_random_six_num)
   12. [table中的td对齐属性](#table-td-align)
-  13. [radion-checkbox-select](#radion-checkbox-select)
+  13. [radio-checkbox-select](#radio-checkbox-select)
   
 ####<a id="reset" name="reset">1. CSS初始化样式reset.css</a>  
 不同的浏览器对各个标签默认的样式是不一样的，而且有时候我们也不想使用浏览器给出的默认样式，我们就可以用reset.css去掉其默认样式
@@ -218,7 +218,7 @@ td{
   vertical-align: top; /* 竖向对齐：top, middle, bottom */
 }
 ```
-####<a id="radion-checkbox-select" name="radion-checkbox-select">13. radion-checkbox-select</a>  
+####<a id="radio-checkbox-select" name="radio-checkbox-select">13. radio-checkbox-select</a>  
 jquery对radio, checkbox的input标签和select标签的操作  
 
 input[type=radio]的操作  
