@@ -271,8 +271,6 @@ $('#getcheckval').click(function(){
 
 select标签
 ```javascript
-// 获取select选中的value值
-$('#getselectval').click(function(){
-    $('#result').text($('#province').val());
-})
+// 获取select选中的value值，给select一个id，直接使用`val()`获取就行
+$('#province').val()
 ```
