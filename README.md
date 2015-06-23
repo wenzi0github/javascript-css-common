@@ -229,6 +229,9 @@ $('#myradio input[type=radio]').is(':checked');
 // 设置radio选中某个元素
 $('#myradio input:eq(1)').prop('checked', true);
 
+// 设置radio取消选中某个元素
+$('#myradio input:eq(1)').prop('checked', false);
+
 // 获取选中的radio的值
 var val = $('#myradio input[type=radio]:checked').val();
 ```
@@ -243,7 +246,7 @@ $('#checkall').click(function(){
     $('#like input[type=checkbox]').prop('checked', true);
 })
 
-// 反选，判断当前的checkbox是否被选中，若被选中则取消，否则添加checked属性
+// 反选，判断当前的checkbox是否被选中，若被选中则设置checked属性为false，否则设置checked属性为true
 $('#reverse').click(function(){
     $('#like input[type=checkbox]').each(function(){
         if($(this).is(':checked')){
