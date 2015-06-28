@@ -272,6 +272,12 @@ $('#getcheckval').click(function(){
     console.log(result);
 })
 ```
+select标签
+```javascript
+// 获取select选中的value值，给select一个id，直接使用`val()`获取就行
+$('#province').val()
+```
+
 ####<a id="radio-checkbox-select" name="requestAnimationFrame">14. requestAnimationFrame的兼容性处理</a>  
 ```javascript
 // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
@@ -298,9 +304,4 @@ $('#getcheckval').click(function(){
         clearTimeout(id);
     };
 }());
-```
-select标签
-```javascript
-// 获取select选中的value值，给select一个id，直接使用`val()`获取就行
-$('#province').val()
 ```
