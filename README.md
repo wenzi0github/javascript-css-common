@@ -17,6 +17,7 @@ javascript和css的常用代码总结。在平时工作和学习中，我们会�
   11. [js产生6位随机数字](#js_random_six_num)
   12. [table中的td对齐属性](#table-td-align)
   13. [radio-checkbox-select](#radio-checkbox-select)
+  14. [requestAnimationFrame](#requestAnimationFrame的兼容性处理)
   
 ####<a id="reset" name="reset">1. CSS初始化样式reset.css</a>  
 不同的浏览器对各个标签默认的样式是不一样的，而且有时候我们也不想使用浏览器给出的默认样式，我们就可以用reset.css去掉其默认样式
@@ -271,7 +272,33 @@ $('#getcheckval').click(function(){
     console.log(result);
 })
 ```
-
+####<a id="radio-checkbox-select" name="requestAnimationFrame">14. requestAnimationFrame的兼容性处理</a>  
+```javascript
+// http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+// http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
+// requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
+// MIT license
+(function() {
+    var lastTime = 0;
+    var vendors = ['ms', 'moz', 'webkit', 'o'];
+    for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+        window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+        window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
+    }
+    if (!window.requestAnimationFrame) window.requestAnimationFrame = function(callback, element) {
+        var currTime = new Date().getTime();
+        var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+        var id = window.setTimeout(function() {
+            callback(currTime + timeToCall);
+        }, timeToCall);
+        lastTime = currTime + timeToCall;
+        return id;
+    };
+    if (!window.cancelAnimationFrame) window.cancelAnimationFrame = function(id) {
+        clearTimeout(id);
+    };
+}());
+```
 select标签
 ```javascript
 // 获取select选中的value值，给select一个id，直接使用`val()`获取就行
