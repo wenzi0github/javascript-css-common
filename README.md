@@ -18,6 +18,7 @@ javascript和css的常用代码总结。在平时工作和学习中，我们会�
   12. [table中的td对齐属性](#table-td-align)
   13. [radio-checkbox-select](#radio-checkbox-select)
   14. [requestAnimationFrame的兼容性处理](#requestAnimationFrame)
+  15. [获取鼠标移动的方向](#mouse-enter-leave)
   
 ####<a id="reset" name="reset">1. CSS初始化样式reset.css</a>  
 不同的浏览器对各个标签默认的样式是不一样的，而且有时候我们也不想使用浏览器给出的默认样式，我们就可以用reset.css去掉其默认样式
@@ -304,4 +305,25 @@ $('#province').val()
         clearTimeout(id);
     };
 }());
+```
+
+####<a id="mouse-enter-leave" name="mouse-enter-leave">15. 获取鼠标移动的方向</a>  
+我们一定遇见过鼠标从哪个地方进入到某div中，遮罩就从哪个方向出现，鼠标从哪个地方离开这个div，遮罩就从哪个方向消失。整个动画实现的基础就是获取鼠标移动的方向。  
+
+```javascript
+function getDirection($element, event) {
+    var w = $element.width(),
+        h = $element.height(),
+        x = (event.pageX - $element.offset().left - (w / 2)) * (w > h ? (h / w) : 1),
+        y = (event.pageY - $element.offset().top - (h / 2)) * (h > w ? (w / h) : 1),
+        direction = Math.round((((Math.atan2(y, x) * (180 / Math.PI)) + 180) / 90) + 3) % 4;
+
+    return direction;
+}
+
+$('#content').on('mouseenter', function(event){
+    console.log( 'enter: '+ getDirection($(this), event) );
+}).on('mouseleave', function(event){
+    console.log( 'leave: '+getDirection($(this), event) );
+})
 ```
