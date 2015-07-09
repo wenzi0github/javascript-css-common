@@ -311,6 +311,12 @@ $('#province').val()
 我们一定遇见过鼠标从哪个地方进入到某div中，遮罩就从哪个方向出现，鼠标从哪个地方离开这个div，遮罩就从哪个方向消失。整个动画实现的基础就是获取鼠标移动的方向。  
 
 ```javascript
+/*
+ * 获取元素移动的方向
+ * @param  $element  元素的jQuery对象
+ * @param  event     事件对象
+ * @return direction 返回一个数字：0:上，1:右，2:下，3:左
+ **/
 function getDirection($element, event) {
     var w = $element.width(),
         h = $element.height(),
