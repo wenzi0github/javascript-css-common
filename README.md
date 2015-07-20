@@ -19,6 +19,7 @@ javascript和css的常用代码总结。在平时工作和学习中，我们会�
   13. [radio-checkbox-select](#radio-checkbox-select)
   14. [requestAnimationFrame的兼容性处理](#requestAnimationFrame)
   15. [获取鼠标移动的方向](#mouse-enter-leave)
+  16. [扩展String中的format](#js-string-format)
   
 ####<a id="reset" name="reset">1. CSS初始化样式reset.css</a>  
 不同的浏览器对各个标签默认的样式是不一样的，而且有时候我们也不想使用浏览器给出的默认样式，我们就可以用reset.css去掉其默认样式
@@ -332,4 +333,22 @@ $('#content').on('mouseenter', function(event){
 }).on('mouseleave', function(event){
     console.log( 'leave: '+getDirection($(this), event) );
 })
+```
+
+####<a id="js-string-format" name="js-string-format">16. 扩展String中的format</a>  
+* 对String原型进行扩展: String.prototype.methodName=function...
+* 正则表达式： /\{(\d+)\}/g ；取"{0}"这种格式的占位符，并对里面的数字放入子组
+* js 的 replace 方法有一种重载, string.format(regex , function(group0【匹配项】,group1【子组第一个】...){  //code...  }) ；对于每次匹配到的一个占位符，都从参数相应的位置取得替换项。
+
+```javascript
+String.prototype.format = function () {
+    var args = arguments;
+    var reg = /\{(\d+)\}/g;
+    return this.replace(reg, function (g0, g1) {
+        return args[+g1] || '';
+    });
+};
+//用法：
+"hello {0},your age is {1},so {0}'s age is {1}".format("tom",12);
+//"hello tom,your age is 12,so tom's age is 12"
 ```
