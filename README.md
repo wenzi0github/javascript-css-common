@@ -20,6 +20,7 @@ javascript和css的常用代码总结。在平时工作和学习中，我们会�
   14. [requestAnimationFrame的兼容性处理](#requestAnimationFrame)
   15. [获取鼠标移动的方向](#mouse-enter-leave)
   16. [扩展String中的format](#js-string-format)
+  17. [html字段转换函数](#html_escape)
   
 ####<a id="reset" name="reset">1. CSS初始化样式reset.css</a>  
 不同的浏览器对各个标签默认的样式是不一样的，而且有时候我们也不想使用浏览器给出的默认样式，我们就可以用reset.css去掉其默认样式
@@ -351,4 +352,14 @@ String.prototype.format = function () {
 //用法：
 "hello {0},your age is {1},so {0}'s age is {1}".format("tom",12);
 //"hello tom,your age is 12,so tom's age is 12"
+```
+
+####<a id="html_escape" name="html_escape">17. html字段转换函数</a>  
+```javascript
+function escapeHTML(text) {  
+    var replacements= {"<": "&lt;", ">": "&gt;","&": "&amp;", "\"": "&quot;"};                      
+    return text.replace(/[<>&"]/g, function(character) {  
+        return replacements[character];  
+    }); 
+}
 ```
