@@ -196,7 +196,7 @@ c=d.insertBefore(c.lastChild,d.firstChild);b.hasCSS=!!c}g||t(a,b);return a}var k
 if(g)return a.createDocumentFragment();for(var b=b||i(a),c=b.frag.cloneNode(),d=0,e=m(),h=e.length;d<h;d++)c.createElement(e[d]);return c}};l.html5=e;q(f)})(this,document);
 ```
 
-####<a id="js_random_six_num" name="js_random_six_num">11. js产生6位随机数字</a>  
+####<a id="js_random_num" name="js_random_num">11. js产生随机数字</a>  
 这是利用js里的`Math.random()`产生的。若使用 *1000000 然后再强制转成整型也行；不过使用下面的方式可以更加简洁一些，直接截取随机数的最后6位进行返回： 
 ```javascript
 function getRanNum(){
