@@ -22,6 +22,7 @@ javascript和css的常用代码总结。在平时工作和学习中，我们会�
   16. [扩展String中的format](#js-string-format)
   17. [html字段转换函数](#html_escape)
   18. [js产生随机字符串](#js_random_string)
+  19. [检测浏览器是否支持fixed](#is_support_fixed)
   
 ####<a id="reset" name="reset">1. CSS初始化样式reset.css</a>  
 不同的浏览器对各个标签默认的样式是不一样的，而且有时候我们也不想使用浏览器给出的默认样式，我们就可以用reset.css去掉其默认样式
@@ -374,3 +375,24 @@ Math.random().toString(36).substr(2);
 若是偶数，返回的数值字符串都是短的，若是奇数，则返回的将是一个很大长度的表示值。
 若<10 则都是数字组成，>10 才会包含字母。
 所以如果想得到一长串的随机字符，则需使用一个 > 10 且是奇数的参数，另外根据长度自行使用slice(2,n)截取！
+
+####<a id="is_support_fixed" name="is_support_fixed">19. 检测浏览器是否支持fixed</a>  
+```javascript
+function isSupportFixed() {
+    var userAgent = window.navigator.userAgent, 
+        ios = userAgent.match(/(iPad|iPhone|iPod)\s+OS\s([\d_\.]+)/),
+        ios5below = ios && ios[2] && (parseInt(ios[2].replace(/_/g, '.'), 10) < 5),
+        operaMini = /Opera Mini/i.test(userAgent),
+        body = document.body,
+        div, isFixed;
+
+    div = document.createElement('div');
+    div.style.cssText = 'display:none;position:fixed;z-index:100;';
+    body.appendChild(div);
+    isFixed = window.getComputedStyle(div).position != 'fixed';
+    body.removeChild(div);
+    div = null;
+
+    return !!(isFixed || ios5below || operaMini);
+}
+```
