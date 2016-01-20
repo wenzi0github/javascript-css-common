@@ -23,6 +23,7 @@ javascript和css的常用代码总结。在平时工作和学习中，我们会�
   17. [html字段转换函数](#html_escape)
   18. [js产生随机字符串](#js_random_string)
   19. [检测浏览器是否支持fixed](#is_support_fixed)
+  20. [解析url中的参数](#parse_url_param)
   
 ####<a id="reset" name="reset">1. CSS初始化样式reset.css</a>  
 不同的浏览器对各个标签默认的样式是不一样的，而且有时候我们也不想使用浏览器给出的默认样式，我们就可以用reset.css去掉其默认样式
@@ -395,4 +396,13 @@ function isSupportFixed() {
 
     return !!(isFixed || ios5below || operaMini);
 }
+```
+
+####<a id="parse_url_param" name="parse_url_param">20. 解析url中的参数</a>  
+用于解析当前URL中带的参数，如 http://www.xiabingbao.com/javascript/2015/01/30/geturl-param/?a=1&b=wenzi 
+
+```javascript
+var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+var r = window.location.search.substr(1).match(reg);
+if (r != null) return unescape(r[2]); return null;
 ```
