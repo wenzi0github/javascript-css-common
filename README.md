@@ -357,6 +357,26 @@ String.prototype.format = function () {
 //"hello tom,your age is 12,so tom's age is 12"
 ```
 
+若不想在`String`的类型上进行拓展，也可以这样修改：  
+
+```javascript
+var tool = {
+    format : function(str){
+        var args = arguments;
+	    var reg = /\{(\d+)\}/g;
+	    return str.replace(reg, function (g0, g1) {
+	    	g1++;
+
+	        return args[+g1] || '';
+	    });
+    }
+}
+
+tool.format("hello {0},your age is {1},so {0}'s age is {1}", "tom", 12);
+// "hello tom,your age is 12,so tom's age is 12"
+```
+
+
 ####<a id="html_escape" name="html_escape">17. html字段转换函数</a>  
 ```javascript
 function escapeHTML(text) {  
