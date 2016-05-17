@@ -24,6 +24,7 @@ javascript和css的常用代码总结。在平时工作和学习中，我们会�
   18. [js产生随机字符串](#js_random_string)
   19. [检测浏览器是否支持fixed](#is_support_fixed)
   20. [解析url中的参数](#parse_url_param)
+  21. [图片懒加载](#lazyload_img)
   
 ####<a id="reset" name="reset">1. CSS初始化样式reset.css</a>  
 不同的浏览器对各个标签默认的样式是不一样的，而且有时候我们也不想使用浏览器给出的默认样式，我们就可以用reset.css去掉其默认样式
@@ -425,4 +426,32 @@ function isSupportFixed() {
 var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
 var r = window.location.search.substr(1).match(reg);
 if (r != null) return unescape(r[2]); return null;
+```
+
+####<a id="lazyload_img" name="lazyload_img">21. 图片懒加载</a>  
+对需要懒加载的图片，把真实的图片地址放到`_src`的属性中，不要写`src`属性，因为src的值为空时也会请求，或者为src设置一个1x1的占位图片。  
+
+把整个页面里的图片划分区域，每个区域按顺序设置图片的`name`属性，值为`page_cnt_{num}`，num从1开始依次递增不能有间断：
+
+```html
+<div class="area1">
+	<img _src="http://inews.gtimg.com/newsapp_ls/0/301518240_150120/0" name="page_cnt_1" />
+	<img _src="http://inews.gtimg.com/newsapp_ls/0/301518240_150120/0" name="page_cnt_1" />
+	<img _src="http://inews.gtimg.com/newsapp_ls/0/301518240_150120/0" name="page_cnt_1" />
+</div>
+<div class="area2">
+	<img _src="http://inews.gtimg.com/newsapp_ls/0/301518240_150120/0" name="page_cnt_2" />
+	<img _src="http://inews.gtimg.com/newsapp_ls/0/301518240_150120/0" name="page_cnt_2" />
+	<img _src="http://inews.gtimg.com/newsapp_ls/0/301518240_150120/0" name="page_cnt_2" />
+</div>
+```
+
+当滚动条滚动到当前区域时，则把area1区域里name的值是**page_cnt_1**的图片都加载完成，而area2则在滚动条再次滚动到相应的距离时才加载。
+
+```javascript
+(function(){var a=this;a.pageSize=1E3;a.pageQuotiety=.5;a.imgName="page_cnt_";a.imgs=[];var e,g;e=window.navigator.userAgent.toLowerCase();g=/msie/.test(e);/gecko/.test(e);/opera/.test(e);/safari/.test(e);var f=function(b,a){var d=a?a:document;return"object"==typeof b?b:d.getElementsByName(b)};a.getWindowSize=function(){var b={};if(window.self&&self.innerWidth)return b.width=self.innerWidth,b.height=self.innerHeight,b;if(document.documentElement&&document.documentElement.clientHeight)return b.width=
+document.documentElement.clientWidth,b.height=document.documentElement.clientHeight,b;b.width=document.body.clientWidth;b.height=document.body.clientHeight;return b};a.getObjPosition=function(b){var a={};a.x=b.offsetLeft;for(a.y=b.offsetTop;b=b.offsetParent;)a.x+=b.offsetLeft,a.y+=b.offsetTop;return a};a._getPageScroll=function(){var a;"undefined"!=typeof window.pageYOffset?a=window.pageYOffset:document.documentElement&&document.documentElement.scrollTop?a=document.documentElement.scrollTop:document.body&&
+(a=document.body.scrollTop);return a};a._loadImages=function(a){if(a){var c=a;"string"==typeof a&&(c=f(a));for(a=0;a<c.length;a++){var d=c[a];"object"==typeof d&&d.getAttribute("_src")&&(d.setAttribute("src",d.getAttribute("_src")),d.removeAttribute("_src",0))}delete c}};a._loadAllImgs=function(){for(var b=0;a.imgs[b];)a._loadImages(a.imgs[b][0]),b++};a.getImgPosition=function(){for(var b=1,c=f(a.imgName+b);c&&0<c.length;){var c=f("page_cnt_"+b),d=a.getImgLoadPosition(c[0]);a.imgs.push([c,c[0],d]);
+b++;c=f(a.imgName+b)}};a.getImgLoadPosition=function(b){var c={imgTop:0,pageTop:0};b&&(a.getWindowSize(),c.imgTop=parseInt(a.getObjPosition(b).y),c.pageTop=parseInt(1E3*(c.imgTop/1E3-a.pageQuotiety)));return c};a._addScrollEven=function(){g?window.attachEvent("onscroll",a._scrollFn):window.addEventListener("scroll",a._scrollFn,!1)};a._removeScrollEven=function(){g?window.detachEvent("onscroll",a._scrollFn):window.removeEventListener("scroll",a._scrollFn,!1)};a._scrollFn=function(){var b=a._getPageScroll(),
+c=a.getWindowSize().height;if(0==c)a._loadAllImgs();else for(var d=0,e=0;a.imgs[d];)b+c<a.imgs[d][2].pageTop||(a._loadImages(a.imgs[d][0]),e++),d++,e>=a.imgs.length&&a._removeScrollEven()};a.getImgPosition();a._addScrollEven();a._scrollFn()})();
 ```
