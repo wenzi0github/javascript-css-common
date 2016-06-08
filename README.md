@@ -51,15 +51,15 @@ table { border-collapse:collapse; border-spacing:0; }
 通常我们在有浮动元素的情况下，会在同级目录下再创建一个`<div style="clear:both;"></div>`；不过这样会增加很多无用的代码。此时我们用`:after`这个伪元素来解决浮动的问题，如果当前层级有浮动元素，那么在其父级添加上clearfix类即可。  
 ```css
 .clearfix:after {
-  content: "\00A0";
-  display: block;
-  visibility: hidden;
-  width: 0;
-  height: 0;
-  clear: both;
-  font-size: 0;
-  line-height: 0;
-  overflow: hidden;
+  	content: "\00A0";
+  	display: block;
+  	visibility: hidden;
+  	width: 0;
+  	height: 0;
+  	clear: both;
+  	font-size: 0;
+  	line-height: 0;
+  	overflow: hidden;
 }
 .clearfix{zoom:1}
 ```
