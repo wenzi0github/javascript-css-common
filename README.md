@@ -25,6 +25,7 @@ javascript和css的常用代码总结。在平时工作和学习中，我们会�
   19. [检测浏览器是否支持fixed](#is_support_fixed)
   20. [解析url中的参数](#parse_url_param)
   21. [图片懒加载](#lazyload_img)
+  22. [jQuery回到顶部](#animate_scrolltop)
   
 ####<a id="reset" name="reset">1. CSS初始化样式reset.css</a>  
 不同的浏览器对各个标签默认的样式是不一样的，而且有时候我们也不想使用浏览器给出的默认样式，我们就可以用reset.css去掉其默认样式
@@ -454,4 +455,19 @@ document.documentElement.clientWidth,b.height=document.documentElement.clientHei
 (a=document.body.scrollTop);return a};a._loadImages=function(a){if(a){var c=a;"string"==typeof a&&(c=f(a));for(a=0;a<c.length;a++){var d=c[a];"object"==typeof d&&d.getAttribute("_src")&&(d.setAttribute("src",d.getAttribute("_src")),d.removeAttribute("_src",0))}delete c}};a._loadAllImgs=function(){for(var b=0;a.imgs[b];)a._loadImages(a.imgs[b][0]),b++};a.getImgPosition=function(){for(var b=1,c=f(a.imgName+b);c&&0<c.length;){var c=f("page_cnt_"+b),d=a.getImgLoadPosition(c[0]);a.imgs.push([c,c[0],d]);
 b++;c=f(a.imgName+b)}};a.getImgLoadPosition=function(b){var c={imgTop:0,pageTop:0};b&&(a.getWindowSize(),c.imgTop=parseInt(a.getObjPosition(b).y),c.pageTop=parseInt(1E3*(c.imgTop/1E3-a.pageQuotiety)));return c};a._addScrollEven=function(){g?window.attachEvent("onscroll",a._scrollFn):window.addEventListener("scroll",a._scrollFn,!1)};a._removeScrollEven=function(){g?window.detachEvent("onscroll",a._scrollFn):window.removeEventListener("scroll",a._scrollFn,!1)};a._scrollFn=function(){var b=a._getPageScroll(),
 c=a.getWindowSize().height;if(0==c)a._loadAllImgs();else for(var d=0,e=0;a.imgs[d];)b+c<a.imgs[d][2].pageTop||(a._loadImages(a.imgs[d][0]),e++),d++,e>=a.imgs.length&&a._removeScrollEven()};a.getImgPosition();a._addScrollEven();a._scrollFn()})();
+```
+
+####<a id="animate_scrolltop" name="animate_scrolltop">22. jQuery回到顶部</a>  
+回到顶部有不少的方法，没有缓冲效果的话，先在顶部放置一个a标签，然后给回到顶部的链接一个`#`: 
+```
+// 顶部标签
+<a id="top"></a>
+
+// 回到顶部的按钮
+<a href="#top">回到顶部</a>
+```
+
+如果需要缓冲效果的话，可以使用jQuery中的`animate`:
+```
+$('body,html').animate({scrollTop:0}, 500);
 ```
