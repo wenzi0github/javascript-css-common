@@ -118,8 +118,8 @@ div{
 
 ####<a id="table-border" name="table-border">5. table边界的样式</a>
 ```css
-table { border :  1px  solid  #000 ; padding : 0 ; border-collapse :  collapse ; table-layout : fixed ;  margin-top : 10px ;}  
-table td { height : 30px ; border :  1px  solid  #000 ;  background :  #fff ;   font-size : 15px ;  font-family :Microsoft YaHei;  padding :  3px  3px  3px  8px ; color :  #000 ;  width : 160px ;}
+table { border: 1px solid #000; padding: 0; border-collapse: collapse; table-layout: fixed; margin-top: 10px;}  
+table td { height: 30px; border: 1px solid #000; background: #fff; font-size: 15px; padding: 3px 3px 3px 8px; color: #000; width: 160px;}
 ```
 
 ####<a id="div-center" name="div-center">6. div上下左右居中</a>  
