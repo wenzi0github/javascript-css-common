@@ -459,7 +459,7 @@ c=a.getWindowSize().height;if(0==c)a._loadAllImgs();else for(var d=0,e=0;a.imgs[
 
 ####<a id="animate_scrolltop" name="animate_scrolltop">22. jQuery回到顶部</a>  
 回到顶部有不少的方法，没有缓冲效果的话，先在顶部放置一个a标签，然后给回到顶部的链接一个`#`: 
-```
+```html
 // 顶部标签
 <a id="top"></a>
 
@@ -468,6 +468,6 @@ c=a.getWindowSize().height;if(0==c)a._loadAllImgs();else for(var d=0,e=0;a.imgs[
 ```
 
 如果需要缓冲效果的话，可以使用jQuery中的`animate`:
-```
+```javascript
 $('body,html').animate({scrollTop:0}, 500);
 ```
