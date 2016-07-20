@@ -26,6 +26,7 @@ javascript和css的常用代码总结。在平时工作和学习中，我们会�
   20. [解析url中的参数](#parse_url_param)
   21. [图片懒加载](#lazyload_img)
   22. [jQuery回到顶部](#animate_scrolltop)
+  23. [图片hover放大](#img_hover_bigger)
   
 ####<a id="reset" name="reset">1. CSS初始化样式reset.css</a>  
 不同的浏览器对各个标签默认的样式是不一样的，而且有时候我们也不想使用浏览器给出的默认样式，我们就可以用reset.css去掉其默认样式
@@ -470,4 +471,34 @@ c=a.getWindowSize().height;if(0==c)a._loadAllImgs();else for(var d=0,e=0;a.imgs[
 如果需要缓冲效果的话，可以使用jQuery中的`animate`:
 ```javascript
 $('body,html').animate({scrollTop:0}, 500);
+```
+
+####<a id="img_hover_bigger" name="img_hover_bigger">23. 图片hover放大</a>  
+
+```css
+a{
+	position: relative;
+	overflow: hidden;
+	display: block;
+}
+img{
+	-webkit-transition: transform .2s ease-out;
+    -moz-transition: transform .2s ease-out;
+    -ms-transition: transform .2s ease-out;
+    -o-transition: transform .2s ease-out;
+    transition: transform .2s ease-out;
+}
+a:hover img{
+	-webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1);
+}
+```
+
+```html
+<a href="">
+	<img src=""  />
+</a>
 ```
