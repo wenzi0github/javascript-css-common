@@ -87,13 +87,23 @@ var  cookie = {
             return null ;
     },
      
-    //删除cookies
+    //删除cookies， name可以为字符串('username')或数组(['username', 'password', ...])
     delCookie: function (name)
     {
-        var exp =  new  Date();
-        exp.setTime(exp.getTime() - 1);
-        var cval = cookie.getCookie(name);
-        if (cval!== null ) document.cookie= name +  "=" +cval+ ";expires=" +exp.toGMTString();
+        var delItem = function(item){
+	        var exp =  new  Date();
+	        exp.setTime(exp.getTime() - 1);
+	        var cval = cookie.getCookie(item);
+	        if (cval!== null ) document.cookie= item +  "=" +cval+ ";expires=" +exp.toGMTString();
+	    }
+	
+	    if( typeof name === 'string' ){
+	        delItem( name );
+	    }else{
+	        for(var i=0, len=name.length; i<len; i++){
+	            delItem( name[i] );
+	        }
+	    }
     }
 }
 ```
