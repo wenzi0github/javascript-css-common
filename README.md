@@ -435,9 +435,12 @@ function isSupportFixed() {
 用于解析当前URL中带的参数，如 http://www.xiabingbao.com/javascript/2015/01/30/geturl-param/?a=1&b=wenzi 
 
 ```javascript
-var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-var r = window.location.search.substr(1).match(reg);
-if (r != null) return unescape(r[2]); return null;
+function parseUrl(search, name){
+	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+	var r = url.substr(1).match(reg);
+	if (r != null) return unescape(r[2]); return null;
+}
+parseUrl(window.location.search, 'id');
 ```
 
 ####<a id="lazyload_img" name="lazyload_img">21. 图片懒加载</a>  
