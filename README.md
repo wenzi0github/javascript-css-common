@@ -3,7 +3,7 @@
 
 javascript和css的常用代码总结。在平时工作和学习中，我们会遇到经常使用的片段，如果每次都去网上搜索的话，会浪费很多的时间，因此在这里把常用的代码总结一下！
 
-##目录
+## 目录
   1. [CSS初始化样式reset.css](#reset)
   2. [去除浮动clearfix](#clearfix)
   3. [js操作cookie](#js-cookie)
@@ -28,7 +28,7 @@ javascript和css的常用代码总结。在平时工作和学习中，我们会�
   22. [jQuery回到顶部](#animate_scrolltop)
   23. [图片hover放大](#img_hover_bigger)
   
-####<a id="reset" name="reset">1. CSS初始化样式reset.css</a>  
+#### <a id="reset" name="reset">1. CSS初始化样式reset.css</a>  
 不同的浏览器对各个标签默认的样式是不一样的，而且有时候我们也不想使用浏览器给出的默认样式，我们就可以用reset.css去掉其默认样式
 
 ```css
@@ -49,7 +49,7 @@ button, input, select, textarea { font-size:100%; }
 table { border-collapse:collapse; border-spacing:0; } 
 ```
 
-####<a id="clearfix" name="clearfix">2. 去除浮动clearfix</a>  
+#### <a id="clearfix" name="clearfix">2. 去除浮动clearfix</a>  
 通常我们在有浮动元素的情况下，会在同级目录下再创建一个`<div style="clear:both;"></div>`；不过这样会增加很多无用的代码。此时我们用`:after`这个伪元素来解决浮动的问题，如果当前层级有浮动元素，那么在其父级添加上clearfix类即可。  
 ```css
 .clearfix:after {
@@ -66,7 +66,7 @@ table { border-collapse:collapse; border-spacing:0; }
 .clearfix{zoom:1}
 ```
 
-####<a id="js-cookie" name="js-cookie">3. js操作cookie</a>
+#### <a id="js-cookie" name="js-cookie">3. js操作cookie</a>
 
 ```javascript
 var  cookie = {
@@ -108,7 +108,7 @@ var  cookie = {
 }
 ```
 
-####<a id="word-wrap" name="word-wrap">4. css强制换行/自动换行/强制不换行</a>
+#### <a id="word-wrap" name="word-wrap">4. css强制换行/自动换行/强制不换行</a>
 ```css
 /* 强制不换行 */
 div{
@@ -133,7 +133,7 @@ table { border: 1px solid #000; padding: 0; border-collapse: collapse; table-lay
 table td { height: 30px; border: 1px solid #000; background: #fff; font-size: 15px; padding: 3px 3px 3px 8px; color: #000; width: 160px;}
 ```
 
-####<a id="div-center" name="div-center">6. div上下左右居中</a>  
+#### <a id="div-center" name="div-center">6. div上下左右居中</a>  
 ```css
 div{
   position:absolute;
@@ -146,7 +146,7 @@ div{
 }
 ```
 
-####<a id="img-center" name="img-center">7. 图片上下左右居中</a>  
+#### <a id="img-center" name="img-center">7. 图片上下左右居中</a>  
 一种常用的方式是把外层的div设置为table-cell；然后让内部的元素上下左右居中。当然也还有一种方式，就是把img当做div，参考6中的代码进行设置。  
 CSS代码如下：  
 ```css
@@ -166,7 +166,7 @@ html代码如下：
 </div>
 ```
 
-####<a id="js-str-reverse" name="js-str-reverse">8. js字符串翻转</a>  
+#### <a id="js-str-reverse" name="js-str-reverse">8. js字符串翻转</a>  
 js中没有直接对字符串进行反转的，需要我们先转换成数组，然后使用数组中的`reverse()`方法翻转，最后在把数组拼接回字符串。  
 ```javascript
 var str = "abcdefg";
@@ -174,7 +174,7 @@ var revs = str.split("").reverse().join("");
 console.log(revs);
 ```
 
-####<a id="ipad_adap" name="ipad_adap">9. iPad页面适配框架</a>  
+#### <a id="ipad_adap" name="ipad_adap">9. iPad页面适配框架</a>  
 这是一个适配iPad页面的大致框架，包括竖屏和横屏
 ```css
 iPad 适配
@@ -197,7 +197,7 @@ and (orientation : landscape) {
 }
 ```
 
-####<a id="google_html5_js" name="google_html5_js">10. google html5.js</a>
+#### <a id="google_html5_js" name="google_html5_js">10. google html5.js</a>
 这是Google提供的js框架，使IE8及以下的浏览器支持html5新标签
 [html5.js 链接](http://html5shim.googlecode.com/svn/trunk/html5.js)
 ```javascript
@@ -211,7 +211,7 @@ c=d.insertBefore(c.lastChild,d.firstChild);b.hasCSS=!!c}g||t(a,b);return a}var k
 if(g)return a.createDocumentFragment();for(var b=b||i(a),c=b.frag.cloneNode(),d=0,e=m(),h=e.length;d<h;d++)c.createElement(e[d]);return c}};l.html5=e;q(f)})(this,document);
 ```
 
-####<a id="js_random_num" name="js_random_num">11. js产生随机数字</a>  
+#### <a id="js_random_num" name="js_random_num">11. js产生随机数字</a>  
 这是利用js里的`Math.random()`产生的。若使用 *1000000 然后再强制转成整型也行；不过使用下面的方式可以更加简洁一些，直接截取随机数的最后6位进行返回： 
 ```javascript
 function getRanNum(){
@@ -220,7 +220,7 @@ function getRanNum(){
 ```
 其实，产生32位的字母和数字混合的字符串也比较简单，先给出一个含有包含所有字符和数字的混合字符串，然后使用`Math.random()`摘取每位上的字符进行拼接，最后能够得到一个32位的随机字符串；或者使用js的md5()进行加密也可以。可以参考本人收藏的md5加密代码【[md5加密](https://github.com/wenzi0github/js-encrypt/blob/master/md5.js)】
 
-####<a id="table-td-align" name="table-td-align">12. table中td的对齐属性</a>  
+#### <a id="table-td-align" name="table-td-align">12. table中td的对齐属性</a>  
 在table中有两个默认的属性：align(横向对齐属性)和valign(竖向对齐属性)。  
 align有三个值：left(左对齐，默认)，center(左右居中)，right(右对齐)；如想要文字居中，可以：  
 ```html
@@ -238,7 +238,7 @@ td{
   vertical-align: top; /* 竖向对齐：top, middle, bottom */
 }
 ```
-####<a id="radio-checkbox-select" name="radio-checkbox-select">13. radio-checkbox-select</a>  
+#### <a id="radio-checkbox-select" name="radio-checkbox-select">13. radio-checkbox-select</a>  
 jquery对radio, checkbox的input标签和select标签的操作  
 
 input[type=radio]的操作  
@@ -297,7 +297,7 @@ select标签
 $('#province').val()
 ```
 
-####<a id="radio-checkbox-select" name="requestAnimationFrame">14. requestAnimationFrame的兼容性处理</a>  
+#### <a id="radio-checkbox-select" name="requestAnimationFrame">14. requestAnimationFrame的兼容性处理</a>  
 ```javascript
 // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
 // http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
@@ -325,7 +325,7 @@ $('#province').val()
 }());
 ```
 
-####<a id="mouse-enter-leave" name="mouse-enter-leave">15. 获取鼠标移动的方向</a>  
+#### <a id="mouse-enter-leave" name="mouse-enter-leave">15. 获取鼠标移动的方向</a>  
 我们一定遇见过鼠标从哪个地方进入到某div中，遮罩就从哪个方向出现，鼠标从哪个地方离开这个div，遮罩就从哪个方向消失。整个动画实现的基础就是获取鼠标移动的方向。  
 
 ```javascript
@@ -352,7 +352,7 @@ $('#content').on('mouseenter', function(event){
 })
 ```
 
-####<a id="js-string-format" name="js-string-format">16. 扩展String中的format</a>  
+#### <a id="js-string-format" name="js-string-format">16. 扩展String中的format</a>  
 * 对String原型进行扩展: String.prototype.methodName=function...
 * 正则表达式： /\{(\d+)\}/g ；取"{0}"这种格式的占位符，并对里面的数字放入子组
 * js 的 replace 方法有一种重载, string.format(regex , function(group0【匹配项】,group1【子组第一个】...){  //code...  }) ；对于每次匹配到的一个占位符，都从参数相应的位置取得替换项。
@@ -390,7 +390,7 @@ tool.format("hello {0},your age is {1},so {0}'s age is {1}", "tom", 12);
 ```
 
 
-####<a id="html_escape" name="html_escape">17. html字段转换函数</a>  
+#### <a id="html_escape" name="html_escape">17. html字段转换函数</a>  
 ```javascript
 function escapeHTML(text) {  
     var replacements= {"<": "&lt;", ">": "&gt;","&": "&amp;", "\"": "&quot;"};                      
@@ -400,7 +400,7 @@ function escapeHTML(text) {
 }
 ```
 
-####<a id="js_random_string" name="js_random_string">18. js产生随机字符串</a>  
+#### <a id="js_random_string" name="js_random_string">18. js产生随机字符串</a>  
 ```javascript
 Math.random().toString(36).substr(2);
 ```
@@ -431,7 +431,7 @@ function isSupportFixed() {
 }
 ```
 
-####<a id="parse_url_param" name="parse_url_param">20. 解析url中的参数</a>  
+#### <a id="parse_url_param" name="parse_url_param">20. 解析url中的参数</a>  
 用于解析当前URL中带的参数，如 http://www.xiabingbao.com/javascript/2015/01/30/geturl-param/?a=1&b=wenzi 
 
 ```javascript
@@ -443,7 +443,7 @@ function parseUrl(search, name){
 parseUrl(window.location.search, 'id');
 ```
 
-####<a id="lazyload_img" name="lazyload_img">21. 图片懒加载</a>  
+#### <a id="lazyload_img" name="lazyload_img">21. 图片懒加载</a>  
 对需要懒加载的图片，把真实的图片地址放到`_src`的属性中，不要写`src`属性，因为src的值为空时也会请求，或者为src设置一个1x1的占位图片。  
 
 把整个页面里的图片划分区域，每个区域按顺序设置图片的`name`属性，值为`page_cnt_{num}`，num从1开始依次递增不能有间断：
@@ -471,7 +471,7 @@ b++;c=f(a.imgName+b)}};a.getImgLoadPosition=function(b){var c={imgTop:0,pageTop:
 c=a.getWindowSize().height;if(0==c)a._loadAllImgs();else for(var d=0,e=0;a.imgs[d];)b+c<a.imgs[d][2].pageTop||(a._loadImages(a.imgs[d][0]),e++),d++,e>=a.imgs.length&&a._removeScrollEven()};a.getImgPosition();a._addScrollEven();a._scrollFn()})();
 ```
 
-####<a id="animate_scrolltop" name="animate_scrolltop">22. jQuery回到顶部</a>  
+#### <a id="animate_scrolltop" name="animate_scrolltop">22. jQuery回到顶部</a>  
 回到顶部有不少的方法，没有缓冲效果的话，先在顶部放置一个a标签，然后给回到顶部的链接一个`#`: 
 ```html
 // 顶部标签
@@ -486,7 +486,7 @@ c=a.getWindowSize().height;if(0==c)a._loadAllImgs();else for(var d=0,e=0;a.imgs[
 $('body,html').animate({scrollTop:0}, 500);
 ```
 
-####<a id="img_hover_bigger" name="img_hover_bigger">23. 图片hover放大</a>  
+#### <a id="img_hover_bigger" name="img_hover_bigger">23. 图片hover放大</a>  
 
 ```css
 a{
