@@ -410,7 +410,7 @@ Math.random().toString(36).substr(2);
 若<10 则都是数字组成，>10 才会包含字母。
 所以如果想得到一长串的随机字符，则需使用一个 > 10 且是奇数的参数，另外根据长度自行使用slice(2,n)截取！
 
-####<a id="is_support_fixed" name="is_support_fixed">19. 检测浏览器是否支持fixed</a>  
+#### <a id="is_support_fixed" name="is_support_fixed">19. 检测浏览器是否支持fixed</a>  
 ```javascript
 function isSupportFixed() {
     var userAgent = window.navigator.userAgent, 
