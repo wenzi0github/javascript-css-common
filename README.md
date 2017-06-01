@@ -26,7 +26,8 @@ javascript和css的常用代码总结。在平时工作和学习中，我们会�
   20. [解析url中的参数](#parse_url_param)
   21. [图片懒加载](#lazyload_img)
   22. [jQuery回到顶部](#animate_scrolltop)
-  23. [图片hover放大](#img_hover_bigger)
+  23. [图片hover放大](#img_hover_bigger)  
+  24. [时间格式化](#time_format)
   
 #### <a id="reset" name="reset">1. CSS初始化样式reset.css</a>  
 不同的浏览器对各个标签默认的样式是不一样的，而且有时候我们也不想使用浏览器给出的默认样式，我们就可以用reset.css去掉其默认样式
@@ -514,4 +515,46 @@ a:hover img{
 <a href="">
 	<img src=""  />
 </a>
+```
+
+#### <a id="time_format" name="time_format">24. 时间格式化</a> 
+
+```javascript
+//格式化日期
+Date.prototype.Format = function (fmt) {
+  var o = {
+    "y+": this.getFullYear(),
+    "M+": this.getMonth() + 1,                 //月份
+    "d+": this.getDate(),                    //日
+    "h+": this.getHours(),                   //小时
+    "m+": this.getMinutes(),                 //分
+    "s+": this.getSeconds(),                 //秒
+    "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+    "S+": this.getMilliseconds()             //毫秒
+  };
+  for (var k in o) {
+    if (new RegExp("(" + k + ")").test(fmt)){
+      if(k == "y+"){
+        fmt = fmt.replace(RegExp.$1, ("" + o[k]).substr(4 - RegExp.$1.length));
+      }
+      else if(k=="S+"){
+        var lens = RegExp.$1.length;
+        lens = lens==1?3:lens;
+        fmt = fmt.replace(RegExp.$1, ("00" + o[k]).substr(("" + o[k]).length - 1,lens));
+      }
+      else{
+        fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+      }
+    }
+  }
+  return fmt;
+}
+```
+使用：  
+```javascript
+var date = new Date();
+console.log(date.Format("yyyy年MM月dd日 hh:mm:ss.S")); //输出: 2016年04月01日 10:41:08.133
+console.log(date.Format("yyyy-MM-dd hh:mm:ss")); //输出: 2016-04-01 10:41:08
+console.log(date.Format("yy-MM-dd hh:mm:ss")); //输出: 16-04-01 10:41:08
+console.log(date.Format("yy-M-d hh:mm:ss")); //输出: 16-4-1 10:41:08
 ```
