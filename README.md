@@ -27,7 +27,8 @@ javascript和css的常用代码总结。在平时工作和学习中，我们会�
   21. [图片懒加载](#lazyload_img)
   22. [jQuery回到顶部](#animate_scrolltop)
   23. [图片hover放大](#img_hover_bigger)  
-  24. [时间格式化](#time_format)
+  24. [时间格式化](#time_format)  
+  25. [Object.assign兼容](#assign_polyfill)
   
 #### <a id="reset" name="reset">1. CSS初始化样式reset.css</a>  
 不同的浏览器对各个标签默认的样式是不一样的，而且有时候我们也不想使用浏览器给出的默认样式，我们就可以用reset.css去掉其默认样式
@@ -557,4 +558,37 @@ console.log(date.Format("yyyy年MM月dd日 hh:mm:ss.S")); //输出: 2016年04月
 console.log(date.Format("yyyy-MM-dd hh:mm:ss")); //输出: 2016-04-01 10:41:08
 console.log(date.Format("yy-MM-dd hh:mm:ss")); //输出: 16-04-01 10:41:08
 console.log(date.Format("yy-M-d hh:mm:ss")); //输出: 16-4-1 10:41:08
+```
+
+
+### <a id="time_format" name="assign_polyfill">25. Object.assign兼容</a> 
+
+```javascript
+if( typeof Object.assign !== 'undefined' ){
+	Object.defineProperty(Object, "assign", {
+		value: function assign(target, varArgs) {
+			'use strict';
+			if (target == null) {
+				throw new TypeError('Cannot convert undefined or null to object');
+			}
+
+			var to = Object(target);
+
+			for (var index = 1; index < arguments.length; index++) {
+				var nextSource = arguments[index];
+
+				if (nextSource != null) {
+				for (var nextKey in nextSource) {
+					if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+					to[nextKey] = nextSource[nextKey];
+					}
+				}
+				}
+			}
+			return to;
+		},
+		writable: true,
+		configurable: true
+  	});
+}
 ```
