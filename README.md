@@ -29,6 +29,7 @@ javascript和css的常用代码总结。在平时工作和学习中，我们会�
   23. [图片hover放大](#img_hover_bigger)  
   24. [时间格式化](#time_format)  
   25. [Object.assign兼容](#assign_polyfill)
+  26. [标题两边的小横杠](#title_before_after)
   
 #### <a id="reset" name="reset">1. CSS初始化样式reset.css</a>  
 不同的浏览器对各个标签默认的样式是不一样的，而且有时候我们也不想使用浏览器给出的默认样式，我们就可以用reset.css去掉其默认样式
@@ -590,5 +591,39 @@ if( typeof Object.assign !== 'undefined' ){
 		writable: true,
 		configurable: true
   	});
+}
+```
+
+### <a id="title_before_after">26. 标题两边的小横杠</a>
+我们经常会遇到这样的UI需求，就是标题两边有两个小横岗，之前是怎么实现的呢？比如用个`border-top`属性，然后再把中间的文字进行绝对定位，同时给这个文字一个背景颜色，把中间的这部分盖住。
+
+现在我们可以使用伪元素来实现！
+```html
+<div class="title">标题</div>
+```
+
+```css
+title{
+    color: #e1767c;
+    font-size: 0.3rem;
+    position: relative;
+
+    &:before, &:after{
+        content: '';
+        position: absolute;
+        display: block;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translate3d(-50%, -50%, 0);
+        transform: translate3d(-50%, -50%, 0);
+        border-top: 0.02rem solid #e1767c;
+        width: 0.4rem;
+    }
+    &:before{
+        margin-left: -1.2rem;
+    }
+    &:after{
+        margin-left: 1.2rem;
+    }
 }
 ```
