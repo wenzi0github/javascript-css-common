@@ -28,8 +28,9 @@ javascript和css的常用代码总结。在平时工作和学习中，我们会�
   22. [jQuery回到顶部](#animate_scrolltop)
   23. [图片hover放大](#img_hover_bigger)  
   24. [时间格式化](#time_format)  
-  25. [Object.assign兼容](#assign_polyfill)
-  26. [标题两边的小横杠](#title_before_after)
+  25. [Object.assign兼容](#assign_polyfill)
+  26. [标题两边的小横杠](#title_before_after)  
+  26. [如何获取当前所在周的起始和结束的日期](#getWeekStartAndEnd)
   
 #### <a id="reset" name="reset">1. CSS初始化样式reset.css</a>  
 不同的浏览器对各个标签默认的样式是不一样的，而且有时候我们也不想使用浏览器给出的默认样式，我们就可以用reset.css去掉其默认样式
@@ -626,4 +627,37 @@ title{
         margin-left: 1.2rem;
     }
 }
+```
+
+
+### <a id="getWeekStartAndEnd">27. 如何获取当前所在周的起始和结束的日期</a>
+
+```javascript
+/**
+ * 获取当前星期的起始日期和结束日期
+ * @param {string} startFormat 周一的时间格式
+ * @param {string} endFormat   周日的时间格式
+ * @param {number} timestamp   所在周的时间戳，若不传入，则默认使用当前时刻的时间戳
+ * @returns {string, string} {startDate, endDate} 返回的数据
+ */
+export const getWeekStartAndEnd = (
+    startFormat: string,
+    endFormat: string,
+    timestamp?: number
+): {
+    startDate: string;
+    endDate: string;
+} => {
+    const oneDayTime = 1000 * 3600 * 24;
+    const nowDate = timestamp ? new Date(timestamp) : new Date();
+    const now = nowDate.getTime();
+    const nowDay = nowDate.getDay() === 0 ? 7 : nowDate.getDay();
+    const startDate = new Date(now - oneDayTime * (nowDay - 1));
+    const endDate = new Date(now + oneDayTime * (7 - nowDay));
+
+    return {
+        startDate: formatTime(startDate.getTime(), startFormat),
+        endDate: formatTime(endDate.getTime(), endFormat)
+    };
+};
 ```
