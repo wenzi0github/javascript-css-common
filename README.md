@@ -1,4 +1,11 @@
 # javascript-css-common
+
+欢迎大家访问我的网站： [https://www.xiabingbao.com](https://www.xiabingbao.com) 
+
+关注我的公众号：
+
+![蚊子的博客公众号](https://www.xiabingbao.com/upload/15706903997004.png)
+
 ## 常用代码总结  
 
 javascript和css的常用代码总结。在平时工作和学习中，我们会遇到经常使用的片段，如果每次都去网上搜索的话，会浪费很多的时间，因此在这里把常用的代码总结一下！
