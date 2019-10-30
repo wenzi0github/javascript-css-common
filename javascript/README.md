@@ -327,3 +327,21 @@ console.log(date.format("yyyy-MM-dd hh:mm:ss")); //输出: 2016-04-01 10:41:08
 console.log(date.format("yy-MM-dd hh:mm:ss")); //输出: 16-04-01 10:41:08
 console.log(date.format("yy-M-d hh:mm:ss")); //输出: 16-4-1 10:41:08
 ```
+
+### 获取当前月份的第一天和最后一天
+
+通过【[如何获取某一天所在的星期](https://www.xiabingbao.com/post/javascript/week-start-end.html)】进行延展而来，这里是获取所在月份的第一天和最后一天。
+
+> 第2个参数是月份，从0开始，范围是0~11；
+
+```javascript
+const date = new Date();
+const monthFirstDate = new Date(date.getFullYear(), date.getMonth(), 1);
+const monthLastDate = new Date(date.getFullYear(), date.getMonth()+1, 0);
+
+console.log(monthFirstDate, monthLastDate);
+```
+
+注意，月份从0开始计算，但是，天数从1开始计算。另外，除了日期的默认值为1，小时、分钟、秒钟和毫秒的默认值都是0。
+
+这些参数如果超出了正常范围，会被自动折算。比如，如果月设为15，就折算为下一年的4月。
