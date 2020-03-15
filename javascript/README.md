@@ -345,3 +345,43 @@ console.log(monthFirstDate, monthLastDate);
 注意，月份从0开始计算，但是，天数从1开始计算。另外，除了日期的默认值为1，小时、分钟、秒钟和毫秒的默认值都是0。
 
 这些参数如果超出了正常范围，会被自动折算。比如，如果月设为15，就折算为下一年的4月。
+
+### 截断字符串并添加省略号
+
+当字符串过长时，可以按照设定的长度来截取：
+
+```typescript
+/**
+ * @param {string} str 要截取的字符串
+ * @param {number} size 截取的长度
+ * @param {string} tail 补充的字符，默认是3个点
+ * @return {string} 返回截取后的字符串
+*/
+const truncate = (str: string, size: number, tail?: string) => {
+    function trim(str: string) {
+        if (isEmpty(str)) {
+            return str;
+        }
+        return str.replace(/(^\s*)|(\s*$)/g, '');
+    }
+
+    function isEmpty(str: any) {
+        if (str === undefined || str === '' || str === null) {
+            return true;
+        }
+        return false;
+    }
+
+    let nstr = trim(str);
+
+    const arr = Array.from(str);
+
+    let cLen = arr.length;
+    let length = size <= 0 ? cLen : size;
+    if (length > cLen) return nstr;
+    nstr = arr.slice(0, length).join('');
+    nstr += tail || '...';
+
+    return nstr;
+};
+```
