@@ -463,3 +463,29 @@ classNames('foo', { bar: true, duck: false }, 'baz', { quux: true }); // => 'foo
 // other falsy values are just ignored
 classNames(null, false, 'bar', undefined, 0, 1, { baz: null }, ''); // => 'bar 1'
 ```
+
+### iOS 移动端键盘收起防止产生空白
+
+在 iPhone 等设备中表单输入完成后，页面会产生空白，这里添加一个`失去焦点`的事件，滚动下页面：
+
+```javascript
+// 防止键盘收起时，产生的空白
+const focusoutCallback = () => {
+    if (os.ios) {
+        //键盘收齐页面空白问题
+        const scrollHeight = document.body.scrollHeight;
+        document.documentElement.scrollTop = scrollHeight;
+        document.body.scrollTop = scrollHeight;
+
+        window.scrollBy(0, 1);
+        window.scrollBy(0, -1);
+    }
+};
+
+useEffect(() => {
+    document.body.addEventListener('focusout', focusoutCallback);
+    return () => {
+        document.body.removeEventListener('focusout', focusoutCallback);
+    };
+}, []);
+```
