@@ -490,7 +490,7 @@ useEffect(() => {
 }, []);
 ```
 
-### 获取页面的可见性
+### 页面可见性的检测
 
 由于历史原因，这个 API 还定义了 document.hidden 属性。该属性只读，返回一个布尔值，表示当前页面是否可见。
 当 document.visibilityState 属性返回 visible 时，document.hidden 属性返回 false；其他情况下，都返回 true。
