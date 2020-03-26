@@ -489,3 +489,52 @@ useEffect(() => {
     };
 }, []);
 ```
+
+### 获取页面的可见性
+
+由于历史原因，这个 API 还定义了 document.hidden 属性。该属性只读，返回一个布尔值，表示当前页面是否可见。
+当 document.visibilityState 属性返回 visible 时，document.hidden 属性返回 false；其他情况下，都返回 true。
+该属性只是出于历史原因而保留的，只要有可能，都应该使用 document.visibilityState 属性，而不是使用这个属性。
+
+```typescript
+export const pageVisibility: Function = (() => {
+    let hidden = '',
+        state = '';
+
+    const keyWithPrefix = (prefix: string, key: string) => {
+        if (prefix !== '') {
+            // 首字母大写
+            return prefix + key.slice(0, 1).toUpperCase() + key.slice(1);
+        }
+        return key;
+    };
+
+    const isPageVisibilitySupport = (() => {
+        let support = false;
+        if (typeof window === 'undefined') {
+            return support;
+        }
+        ['', 'webkit', 'moz', 'ms', 'o'].forEach(item => {
+            let s = keyWithPrefix(item, 'hidden');
+            if (!support && s in document) {
+                hidden = s;
+                state = keyWithPrefix(item, 'visibilityState');
+                support = true;
+            }
+        });
+        return support;
+    })();
+
+    return () => {
+        // 若不支持，则默认页面一直可见
+        if (!isPageVisibilitySupport) {
+            return true;
+        }
+        if (state in document) {
+            return (document as any)[state] === 'visible';
+        } else if (hidden in document) {
+            return !(document as any)[hidden];
+        }
+    };
+})();
+```
