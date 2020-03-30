@@ -4,21 +4,23 @@
 
 ## [JavaScript 常用代码总结](./javascript/README.md)
 
--   如何获取当前所在周的起始和结束的日期
--   对 cookie 的添加/获取和删除
--   js 字符串翻转
--   js 产生随机数字
--   radio-checkbox-select
--   requestAnimationFrame 的兼容性处理
--   获取鼠标移动的方向
--   扩展 String 中的 format
--   js 产生随机字符串
--   解析 url 中的参数
--   时间格式化
--   获取当月的第一天和最后一天
--   iOS 移动端键盘收起防止产生空白
--   页面可见性的检测
--   自定义的 react hooks
+-   [如何获取当前所在周的起始和结束的日期](./javascript#如何获取当前所在周的起始和结束的日期)
+-   [对 cookie 的添加/获取和删除](./javascript#对-cookie-的添加获取和删除)
+-   [js 字符串翻转](./javascript#js-字符串翻转)
+-   [js 产生随机数字](./javascript#js-产生随机数字)
+-   [radio-checkbox-select](./javascript#radio-checkbox-select)
+-   [requestAnimationFrame 的兼容性处理](./javascript#requestAnimationFrame-的兼容性处理)
+-   [获取鼠标移动的方向](./javascript#获取鼠标移动的方向)
+-   [扩展 String 中的 format](./javascript#扩展-String-中的-format)
+-   [js 产生随机字符串](./javascript#js-产生随机字符串)
+-   [解析 url 中的参数](./javascript#解析-url-中的参数)
+-   [时间格式化](./javascript#时间格式化)
+-   [获取当月的第一天和最后一天](./javascript#获取当月的第一天和最后一天)
+-   [截断字符串并添加省略号](./javascript#截断字符串并添加省略号)
+-   [控制使用的 class](./javascript#控制使用的-class)
+-   [iOS 移动端键盘收起防止产生空白](./javascript#iOS-移动端键盘收起防止产生空白)
+-   [页面可见性的检测](./javascript#页面可见性的检测)
+-   [自定义的 react hooks](./javascript#自定义的-react-hooks)
 
 ## [CSS 常用代码总结](./css/README.md)
 
