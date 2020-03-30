@@ -636,3 +636,26 @@ local.getItem('name'); // 获取name字段的值，若存在且在有效期，�
 local.delItem('name'); // 删除name字段的数据
 local.cleanExceed(); // 清除所有过期的字段
 ```
+
+### 对数组进行随机排序
+
+比较简单的方式是利用自带的 sort 方法`Array.sort`：
+
+```javascript
+function randomSort(arr) {
+    arr.sort(() => Math.random() - 0.5);
+}
+```
+
+但这种算法随机起来可能会不均匀，这里还有洗牌算法：
+
+```javascript
+function shuffleSort(arr) {
+    var n = arr.length;
+
+    while (n--) {
+        var index = Math.floor(Math.random() * n);
+        [arr[index], arr[n]] = [arr[n], arr[index]];
+    }
+}
+```
