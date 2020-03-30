@@ -21,6 +21,7 @@
 -   [iOS 移动端键盘收起防止产生空白](./javascript#iOS-移动端键盘收起防止产生空白)
 -   [页面可见性的检测](./javascript#页面可见性的检测)
 -   [自定义的 react hooks](./javascript#自定义的-react-hooks)
+-   [为 localStorage 添加过期时间](./javascript#为-localStorage-添加过期时间)
 
 ## [CSS 常用代码总结](./css/README.md)
 
