@@ -538,3 +538,101 @@ export const pageVisibility: Function = (() => {
     };
 })();
 ```
+
+### 为 localStorage 添加过期时间
+
+localStorage 是浏览器提供的本地存储功能，不用像 cookie 一样跟着 header 一起传递。但 localStorage 没有过期功能，所有存储的数据都会永久存储。为了方便数据的过期，我在这里对 localStorage 进行了下封装，提供了过期的功能。
+
+```typescript
+class LocalStore {
+    prefix: string = '';
+
+    // 初始化，并设置字段的前缀
+    constructor({ prefix }: any) {
+        this.prefix = prefix + '.';
+    }
+
+    // 设置字段，并设置过期时间
+    setItem(key: string, value: string | number, day: number = 30) {
+        if (window.localStorage) {
+            const expire: number =
+                new Date().getTime() + day * 24 * 60 * 60 * 1000;
+
+            window.localStorage.setItem(
+                this.prefix + key,
+                JSON.stringify({
+                    value,
+                    expire
+                })
+            );
+        }
+    }
+
+    // 若存在且在有效期，则正常返回，否则为null
+    getItem(key: string) {
+        if (window.localStorage) {
+            const result = window.localStorage.getItem(this.prefix + key);
+            if (result) {
+                try {
+                    const { value, expire } = JSON.parse(result);
+
+                    if (Date.now() <= expire) {
+                        return value;
+                    }
+
+                    // 当过期的时候，自动删除
+                    this.delItem(key);
+                    return null;
+                } catch (e) {
+                    console.warn('LocalStore getItem error: ' + e);
+                }
+            }
+            return null;
+        }
+    }
+
+    // 删除数据
+    delItem(key: string) {
+        window.localStorage &&
+            window.localStorage.removeItem(this.prefix + key);
+    }
+
+    // 删除已过期的key，返回已删除的key的数量
+    cleanExceed(): number {
+        let num = 0;
+        if (window.localStorage) {
+            const length = localStorage.length;
+            const now = Date.now();
+            let key: string | null = '';
+            for (let i = 0; i < length; i++) {
+                key = localStorage.key(i);
+                if (key && key.indexOf(this.prefix) === 0) {
+                    const result = window.localStorage.getItem(key);
+                    if (result) {
+                        try {
+                            const { expire } = JSON.parse(result);
+                            if (now > expire) {
+                                this.delItem(key);
+                                num++;
+                            }
+                        } catch (e) {
+                            console.warn('LocalStore getItem error: ' + e);
+                        }
+                    }
+                }
+            }
+        }
+        return num;
+    }
+}
+```
+
+使用方法：
+
+```typescript
+const local = new LocalStore('question'); // 添加字段的前缀，防止重复
+local.setItem('name', '蚊子', 2); // 存储name字段，值为`蚊子`，有效期为2天
+local.getItem('name'); // 获取name字段的值，若存在且在有效期，则正常返回，否则为null
+local.delItem('name'); // 删除name字段的数据
+local.cleanExceed(); // 清除所有过期的字段
+```
