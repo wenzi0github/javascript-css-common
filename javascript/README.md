@@ -271,6 +271,39 @@ tool.format("hello {0},your age is {1},so {0}'s age is {1}", 'tom', 12);
 // "hello tom,your age is 12,so tom's age is 12"
 ```
 
+### 字符串的替换
+
+除了上面的format方法，这里还有一种方式：
+
+```typescript
+/**
+ * 替换字符串中特定符号中间的数据
+ *
+ * @param str
+ * @param params
+ */
+export const strReplace = (str: string, params: any = {}): string => {
+    let reg = new RegExp('{(.+?)}', 'g'); // /{(.+?)}/g
+    return str.replace(reg, ($1, $2) => {
+        if ($1 && params.hasOwnProperty($2)) {
+            return params[$2];
+        }
+        return $1;
+    });
+};
+```
+
+使用样例：
+
+```javascript
+const str = `my name is {nickname}, my age is {age}.`;
+const info = strReplace(str, {
+    nickname: '蚊子',
+    age: 24
+});
+console.log(info); // my name is 蚊子, my age is 24.
+```
+
 ### js 产生随机字符串
 
 ```javascript
