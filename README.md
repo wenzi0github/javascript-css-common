@@ -1,5 +1,9 @@
 # javascript-css-common
 
+> 这里将一些常用的方法总结为了一个npm包，方便下载和复用，欢迎关注和下载：[utils](https://github.com/wenzi0github/utils)
+
+[团队常用的工具方法](https://github.com/wenzi0github/utils)
+
 在工作中经常遇到的基础代码进行总结，主要分为 javascript 和 css 两部分：
 
 ## [JavaScript 常用代码总结](./javascript/README.md)
