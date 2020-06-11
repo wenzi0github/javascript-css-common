@@ -18,7 +18,7 @@ export const getWeekStartAndEnd = (
     timestamp?: number
 ): {
     startDate: string,
-    endDate: string
+    endDate: string,
 } => {
     const oneDayTime = 1000 * 3600 * 24;
     const nowDate = timestamp ? new Date(timestamp) : new Date();
@@ -29,7 +29,7 @@ export const getWeekStartAndEnd = (
 
     return {
         startDate: formatTime(startDate.getTime(), startFormat),
-        endDate: formatTime(endDate.getTime(), endFormat)
+        endDate: formatTime(endDate.getTime(), endFormat),
     };
 };
 ```
@@ -39,7 +39,7 @@ export const getWeekStartAndEnd = (
 ```javascript
 var cookie = {
     //写cookies
-    setCookie: function(name, value) {
+    setCookie: function (name, value) {
         var Days = 365;
         var exp = new Date();
         exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
@@ -48,7 +48,7 @@ var cookie = {
     },
 
     //读取cookies
-    getCookie: function(name) {
+    getCookie: function (name) {
         var arr,
             reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)');
         if ((arr = document.cookie.match(reg))) return unescape(arr[2]);
@@ -56,8 +56,8 @@ var cookie = {
     },
 
     //删除cookies， name可以为字符串('username')或数组(['username', 'password', ...])
-    delCookie: function(name) {
-        var delItem = function(item) {
+    delCookie: function (name) {
+        var delItem = function (item) {
             var exp = new Date();
             exp.setTime(exp.getTime() - 1);
             var cval = cookie.getCookie(item);
@@ -73,7 +73,7 @@ var cookie = {
                 delItem(name[i]);
             }
         }
-    }
+    },
 };
 ```
 
@@ -83,10 +83,7 @@ js 中没有直接对字符串进行反转的，需要我们先转换成数组�
 
 ```javascript
 var str = 'abcdefg';
-var revs = str
-    .split('')
-    .reverse()
-    .join('');
+var revs = str.split('').reverse().join('');
 console.log(revs);
 ```
 
@@ -129,13 +126,13 @@ input[type=checkbox]的操作：
 var bool = $('#mycheckbox input[type=checkbox]').is(':checked');
 
 // 全选，所有的checkbox都添加上checked属性
-$('#checkall').click(function() {
+$('#checkall').click(function () {
     $('#like input[type=checkbox]').prop('checked', true);
 });
 
 // 反选，判断当前的checkbox是否被选中，若被选中则设置checked属性为false，否则设置checked属性为true
-$('#reverse').click(function() {
-    $('#like input[type=checkbox]').each(function() {
+$('#reverse').click(function () {
+    $('#like input[type=checkbox]').each(function () {
         if ($(this).is(':checked')) {
             $(this).prop('checked', false);
         } else {
@@ -145,14 +142,14 @@ $('#reverse').click(function() {
 });
 
 // 取消选中，去掉所有checkbox的checked属性
-$('#deleteall').click(function() {
+$('#deleteall').click(function () {
     $('#like input[type=checkbox]').prop('checked', false);
 });
 
 // 获取选中的值
-$('#getcheckval').click(function() {
+$('#getcheckval').click(function () {
     var result = [];
-    $('#mycheckbox input[type=checkbox]:checked').each(function() {
+    $('#mycheckbox input[type=checkbox]:checked').each(function () {
         result.push($(this).val());
     });
     console.log(result);
@@ -173,7 +170,7 @@ $('#province').val();
 // http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
 // requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
 // MIT license
-(function() {
+(function () {
     var lastTime = 0;
     var vendors = ['ms', 'moz', 'webkit', 'o'];
     for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
@@ -184,17 +181,17 @@ $('#province').val();
             window[vendors[x] + 'CancelRequestAnimationFrame'];
     }
     if (!window.requestAnimationFrame)
-        window.requestAnimationFrame = function(callback, element) {
+        window.requestAnimationFrame = function (callback, element) {
             var currTime = new Date().getTime();
             var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-            var id = window.setTimeout(function() {
+            var id = window.setTimeout(function () {
                 callback(currTime + timeToCall);
             }, timeToCall);
             lastTime = currTime + timeToCall;
             return id;
         };
     if (!window.cancelAnimationFrame)
-        window.cancelAnimationFrame = function(id) {
+        window.cancelAnimationFrame = function (id) {
             clearTimeout(id);
         };
 })();
@@ -225,10 +222,10 @@ function getDirection($element, event) {
 }
 
 $('#content')
-    .on('mouseenter', function(event) {
+    .on('mouseenter', function (event) {
         console.log('enter: ' + getDirection($(this), event));
     })
-    .on('mouseleave', function(event) {
+    .on('mouseleave', function (event) {
         console.log('leave: ' + getDirection($(this), event));
     });
 ```
@@ -240,10 +237,10 @@ $('#content')
 -   js 的 replace 方法有一种重载, string.format(regex , function(group0【匹配项】,group1【子组第一个】...){ //code... }) ；对于每次匹配到的一个占位符，都从参数相应的位置取得替换项。
 
 ```javascript
-String.prototype.format = function() {
+String.prototype.format = function () {
     var args = arguments;
     var reg = /\{(\d+)\}/g;
-    return this.replace(reg, function(g0, g1) {
+    return this.replace(reg, function (g0, g1) {
         return args[+g1] || '';
     });
 };
@@ -256,15 +253,15 @@ String.prototype.format = function() {
 
 ```javascript
 var tool = {
-    format: function(str) {
+    format: function (str) {
         var args = arguments;
         var reg = /\{(\d+)\}/g;
-        return str.replace(reg, function(g0, g1) {
+        return str.replace(reg, function (g0, g1) {
             g1++;
 
             return args[+g1] || '';
         });
-    }
+    },
 };
 
 tool.format("hello {0},your age is {1},so {0}'s age is {1}", 'tom', 12);
@@ -307,9 +304,7 @@ console.log(info); // my name is 蚊子, my age is 24.
 ### js 产生随机字符串
 
 ```javascript
-Math.random()
-    .toString(36)
-    .substr(2);
+Math.random().toString(36).substr(2);
 ```
 
 很有意思，研究了一下，基本上 toString 后的参数规定可以是 2-36 之间的任意整数，不写的话默认是 10（也就是十进制），此时返回的值就是那个随机数。
@@ -338,7 +333,7 @@ parseUrl(window.location.search, 'id');
 
 ```javascript
 //格式化日期
-Date.prototype.format = function(fmt) {
+Date.prototype.format = function (fmt) {
     var o = {
         'y+': this.getFullYear(),
         'M+': this.getMonth() + 1, //月份
@@ -347,7 +342,7 @@ Date.prototype.format = function(fmt) {
         'm+': this.getMinutes(), //分
         's+': this.getSeconds(), //秒
         'q+': Math.floor((this.getMonth() + 3) / 3), //季度
-        'S+': this.getMilliseconds() //毫秒
+        'S+': this.getMilliseconds(), //毫秒
     };
     for (var k in o) {
         if (new RegExp('(' + k + ')').test(fmt)) {
@@ -547,7 +542,7 @@ export const pageVisibility: Function = (() => {
         if (typeof window === 'undefined') {
             return support;
         }
-        ['', 'webkit', 'moz', 'ms', 'o'].forEach(item => {
+        ['', 'webkit', 'moz', 'ms', 'o'].forEach((item) => {
             let s = keyWithPrefix(item, 'hidden');
             if (!support && s in document) {
                 hidden = s;
@@ -595,7 +590,7 @@ class LocalStore {
                 this.prefix + key,
                 JSON.stringify({
                     value,
-                    expire
+                    expire,
                 })
             );
         }
@@ -690,5 +685,89 @@ function shuffleSort(arr) {
         var index = Math.floor(Math.random() * n);
         [arr[index], arr[n]] = [arr[n], arr[index]];
     }
+}
+```
+
+### 前端生成 uuid
+
+从前端的角度，无法实现真的 uuid，只能靠一些时间戳和随机数，生成尽量少的 hash 碰撞的数据。
+
+我之前生成的方法是：
+
+```javascript
+const uuid = Date.now() + Math.random().toString().slice(-6);
+```
+
+用毫秒时间戳和随机数后 6 位的数据当做用户的 uuid，不过这种方式不符合[RFC4122](https://www.ietf.org/rfc/rfc4122.txt)标准。RFC4122 标准的格式如下：
+
+```javascript
+const uuid = '1b671a64-40d5-491e-99b0-da01ff1f3341';
+const format = 'xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx'; // 格式
+```
+
+规则：
+
+1. 除去横杠，有 32 位数字和字符（一共 36 位）；
+2. 每位都是 16 进制中的数据，即[0-9a-f]；
+3. 横杠分割开的位数分别是：8-4-4-4-12；
+4. M：表示当前 uuid 的版本，目前只有五个版本，即只会出现 1，2，3，4，5；
+5. N：只能是 8,9,a,b 其中的一个；
+
+生成 uuid 的方法主要有：
+
+#### UUID Version 1：基于时间的 UUID
+
+基于时间的 UUID 通过计算当前时间戳、随机数和机器 MAC 地址得到。由于在算法中使用了 MAC 地址，这个版本的 UUID 可以保证在全球范围的唯一性。但与此同时，使用 MAC 地址会带来安全性问题，这就是这个版本 UUID 受到批评的地方。如果应用只是在局域网中使用，也可以使用退化的算法，以 IP 地址来代替 MAC 地址－－Java 的 UUID 往往是这样实现的（当然也考虑了获取 MAC 的难度）。
+
+#### UUID Version 2：DCE 安全的 UUID
+
+分布式计算环境（Distributed Computing Environment)安全的 UUID 和基于时间的 UUID 算法相同，但会把时间戳的前 4 位置换为 POSIX 的 UID 或 GID。这个版本的 UUID 在实际中较少用到。
+
+#### UUID Version 3：基于名字的 UUID（MD5）
+
+基于名字的 UUID 通过计算名字和名字空间的 MD5 散列值得到。这个版本的 UUID 保证了：相同名字空间中不同名字生成的 UUID 的唯一性；不同名字空间中的 UUID 的唯一性；相同名字空间中相同名字的 UUID 重复生成是相同的。
+
+#### UUID Version 4：随机 UUID
+
+根据随机数，或者伪随机数生成 UUID。这种 UUID 产生重复的概率是可以计算出来的，但随机的东西就像是买彩票：你指望它发财是不可能的，但狗屎运通常会在不经意中到来。
+
+#### UUID Version 5：基于名字的 UUID（SHA1）
+
+和版本 3 一样，不过散列函数换成了 SHA1。
+
+node 版本的 uuid：[uuid](https://github.com/uuidjs/uuid)。
+
+这里提供一个前端可以使用的 v4 版本的方法：
+
+```javascript
+function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+        var r = (Math.random() * 16) | 0,
+            v = c == 'x' ? r : (r & 0x3) | 0x8;
+        return v.toString(16);
+    });
+}
+```
+
+还有一种是基于时间戳和随机数的综合体：
+
+```javascript
+function generateUUID() {
+    // Public Domain/MIT
+    var d = new Date().getTime(); //Timestamp
+    var d2 = (performance && performance.now && performance.now() * 1000) || 0; //Time in microseconds since page-load or 0 if unsupported
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+        var r = Math.random() * 16; //random number between 0 and 16
+        if (d > 0) {
+            //Use timestamp until depleted
+            r = (d + r) % 16 | 0;
+            d = Math.floor(d / 16);
+        } else {
+            //Use microseconds since page-load if supported
+            r = (d2 + r) % 16 | 0;
+            d2 = Math.floor(d2 / 16);
+        }
+        return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16);
+    });
 }
 ```
