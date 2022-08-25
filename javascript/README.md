@@ -692,6 +692,8 @@ function shuffleSort(arr) {
 
 从前端的角度，无法实现真的 uuid，只能靠一些时间戳和随机数，生成尽量少的 hash 碰撞的数据。
 
+现在chrome浏览器已经随机方法了：[crypto.randomUUID()](https://www.xiabingbao.com/post/crypto/js-crypto-randomuuid-qxcuqj.html).
+
 我之前生成的方法是：
 
 ```javascript
