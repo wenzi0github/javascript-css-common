@@ -317,7 +317,7 @@ Math.random().toString(36).substr(2);
 
 ### 解析 url 中的参数
 
-用于解析当前 URL 中带的参数，如[http://www.xiabingbao.com/javascript/2015/01/30/geturl-param/?a=1&b=wenzi](http://www.xiabingbao.com/javascript/2015/01/30/geturl-param/?a=1&b=wenzi)。
+用于解析当前 URL 中带的参数，如 [https://www.xiabingbao.com/post/javascript/2015/01/30/geturl-param.html?a=1&b=wenzi](https://www.xiabingbao.com/post/javascript/2015/01/30/geturl-param.html?a=1&b=wenzi)。
 
 ```javascript
 function parseUrl(search, name) {
